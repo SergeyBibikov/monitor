@@ -1,0 +1,12 @@
+{   
+    "protocol":"http/https",
+    "path": "",
+    "domain": "...com",
+    "port": "80/443",
+    "method": "GET/POST",
+    "max_reqs_per_conn": 100,
+    "headers":"\n",
+    "path_to_body":"body.json",
+    "thread_num": 1,
+    "db_host_ip":"127.0.0.1"
+}
