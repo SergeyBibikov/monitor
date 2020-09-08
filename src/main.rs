@@ -22,11 +22,14 @@ struct Request {
     path_to_body: String,
     thread_num: usize,
     db_host_ip: String,
+    db_port: String,
+    db_meas_name: String,
+    sleep_time: u64,
 }
 
 fn main() {
     let init_str = init().unwrap();
-    create_db(&init_str.db_host_ip);
+    create_db(&init_str.db_host_ip,&init_str.db_port);
     let mut start: std::time::Instant;
     let mut resp_time: f64;
     loop{       
@@ -35,8 +38,8 @@ fn main() {
     resp_time = (start.elapsed().as_millis())as f64/1000.0f64;
     let temp_str: Vec<&str> = std::str::from_utf8(&resp).unwrap().split(" ").collect();
     let status_code = temp_str[1];
-    send_data_to_db(&init_str.db_host_ip, status_code, &resp_time.to_string());
-    std::thread::sleep(std::time::Duration::from_secs(1));   
+    send_data_to_db(&init_str.db_host_ip,&init_str.db_port, status_code, &resp_time.to_string(),&init_str.db_meas_name);
+    std::thread::sleep(std::time::Duration::from_millis(init_str.sleep_time));   
 }
 
 fn init() -> Result<Request>{

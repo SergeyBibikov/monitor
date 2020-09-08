@@ -8,5 +8,8 @@
     "headers":"\n",
     "path_to_body":"body.json",
     "thread_num": 1,
-    "db_host_ip":"127.0.0.1"
+    "db_host_ip":"127.0.0.1",
+    "db_port": "8086",
+    "db_meas_name": "resp_times",
+    "sleep_time": "500"
 }
